@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Pastcasting Prototype V2</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+
+        <script src="https://d3js.org/d3.v6.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-base-randu@umd/browser.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists-logistic-cdf@umd/browser.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3-random@3"></script>
+        <script src="https://unpkg.com/d3-simple-slider"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <!--- Add icon library-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">An past-casting prototype</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header - set the background image for the header in the line below-->
+        <header class="py-5 bg-image-full" style="background-image: url('img/black.png')">
+            <div class="text-center my-5">
+               <!-- <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />--->
+                <h1 class="text-white fs-3 fw-bolder">Pastcasting Tutorial Prototype v2</h1>
+                <p class="text-white-50 mb-0">What was the world's GDP in 2018?</p>
+            </div>
+        </header>
+        <!-- Content section-->
+
+      
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                
+                        <p class="mb-0" style="font-style:italic; padding-bottom:2em">This is a prototype for a pastcasting tutorial that could be used to train forecasting skills and calibration.
+                        <h2>What do you think was the world's GDP in 2018?</h2>
+
+                        <p class="mb-0" style=" padding-bottom:2em">
+                        Move the square to adjust your median estimate. Move the circles to set your 25th and 75th percentile.<br>
+                        Click the button to reveal the correct solution.
+                    </div>
+                    </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-3"> 
+                            <span id="solution" style="display:inline"></span>
+
+                            </p>
+                        </div>
+                                           
+                        <div class="col-lg-6"> 
+
+                            <button id='solution-button' type="button" onclick="showSolution()">Show Solution</button> 
+                            <p class="mb-0" style="padding-bottom:2em;padding-top:0em">
+                                </p>
+
+                            <script src="js/density-plot.js" defer></script>  
+                            <div id="chartArea"></div> 
+                            
+                                <div style="text-align:center">
+                                <strong>lower 25%:</strong> <span id="print_q25" style="display:inline"></span> <br>
+                                <strong>median:</strong> <span id="print_median" style="display:inline"></span> <br>
+                                <strong>upper 75%:</strong> <span id="print_q75" style="display:inline"></span> <br>
+                            </div>
+                       </div>
+                       <div class="col-lg-3"> 
+                       </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6" style="padding-top:4em">
+                       <div id="owid" style="display:none;">
+                        <h2>More Information</h2>
+                       <iframe src="https://ourworldindata.org/grapher/gdp-world-regions-stacked-area?time=earliest..2018&country=Sub-Sahara+Africa~Latin+America~Middle+East~South+and+South-East+Asia~East+Asia~Western+Offshoots~Eastern+Europe~Western+Europe" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+</div>
+</div>
+</div>
+
+            </div>
+        </section>
+        <!-- Image element - set the background image for the header in the line below-->
+         <!--  <div class="py-5 bg-image-full" style="background-image:  url('img/people_wearing_masks.png')">-->
+            <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
+           <!-- <div style="height: 20rem"></div> --->
+        </div>
+        <!-- Content section-->
+         <!--- 
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2>Engaging Background Images</h2>
+                        <p class="lead">The background images used in this template are sourced from Unsplash and are open source and free to use.</p>
+                        <p class="mb-0">I can't tell you how many people say they were turned off from science because of a science teacher that completely sucked out all the inspiration and enthusiasm they had for the course.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    -->    
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white"> By <a href="http://johannaeinsiedler.com">Johanna</a></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script>
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+} 
+        </script>
+    </body>
+</html>
