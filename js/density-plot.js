@@ -297,7 +297,7 @@ function dragged_q25(event, d) {
 
   let values = getData(Number(x.invert(median.attr('x'))),x.invert(left), Number(x.invert(q75.attr('cx'))))
 
-  let values_between_q = values.filter(d => d.x<=sq75)
+  let values_between_q = values.filter(d => d.x<=q75.attr('cx'))
   values_between_q = values_between_q.filter(d => x.invert(left) <= d.x);
   print_q25.innerHTML = formatAbbreviation(x.invert(left));
 
@@ -342,8 +342,9 @@ d3.select(this).attr("cx", left);
 
 let values = getData(Number(x.invert(median.attr('x'))),Number(x.invert(q25.attr('cx'))), x.invert(left))
 
+
 let values_between_q = values.filter(d => d.x<=x.invert(left))
-values_between_q = values_between_q.filter(d => sq25 <= d.x);
+values_between_q = values_between_q.filter(d => q25.attr('cx') <= d.x);
 print_q75.innerHTML = formatAbbreviation(x.invert(left));
 
 area_draw
