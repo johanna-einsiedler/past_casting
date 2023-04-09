@@ -229,8 +229,8 @@ let q75 = svg.append('circle')
     // make sure that q25 cannot go below 0 or above median
     let q25loc = Number(q25.attr('cx'))
     let q25loc_new = q25loc
-    if (q25loc+ event.dx < 0){
-      q25loc_new = 0;
+    if (x.invert(q25loc+ event.dx) < 0){
+      q25loc_new = x(0);
     } else if (q25loc+ event.dx > left){
       q25loc_new = left;
     } else {q25loc_new = q25loc+event.dx}
@@ -289,15 +289,15 @@ function dragged_q25(event, d) {
   //console.log(median.attr('x'))
   if (left  > median.attr('x')) {
     left = median.attr('x')
-  } else if (event.x  <0) {
-    left = 0
+  } else if (x.invert(event.x)  <0) {
+    left = x(0)
   }
 
   d3.select(this).attr("cx", left);
 
   let values = getData(Number(x.invert(median.attr('x'))),x.invert(left), Number(x.invert(q75.attr('cx'))))
 
-  let values_between_q = values.filter(d => d.x<=q75.attr('cx'))
+  let values_between_q = values.filter(d => d.x<=x.invert(q75.attr('cx')))
   values_between_q = values_between_q.filter(d => x.invert(left) <= d.x);
   print_q25.innerHTML = formatAbbreviation(x.invert(left));
 
@@ -344,7 +344,7 @@ let values = getData(Number(x.invert(median.attr('x'))),Number(x.invert(q25.attr
 
 
 let values_between_q = values.filter(d => d.x<=x.invert(left))
-values_between_q = values_between_q.filter(d => q25.attr('cx') <= d.x);
+values_between_q = values_between_q.filter(d => x.invert(q25.attr('cx')) <= d.x);
 print_q75.innerHTML = formatAbbreviation(x.invert(left));
 
 area_draw
